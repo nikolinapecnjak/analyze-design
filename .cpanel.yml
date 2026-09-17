@@ -1,1 +1,4 @@
-deployment: tasks: - export DEPLOYPATH=/home/analyzed/public_html/ - /bin/cp -R * $DEPLOYPATH
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/analyzed/public_html/
+    - /bin/cp -R * $DEPLOYPATH
