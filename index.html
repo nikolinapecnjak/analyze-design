@@ -113,6 +113,10 @@
   .field input:focus, .field textarea:focus{border-bottom-color:var(--cream);}
   .field textarea{resize:vertical; min-height:90px;}
   form .btn-primary{align-self:flex-start; border:none; margin-top:8px;}
+  .hp-field{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+  .form-status{margin-top:12px; font-family:'IBM Plex Mono', monospace; font-size:13px; min-height:18px;}
+  .form-status.ok{color:#8FD9A8;}
+  .form-status.err{color:#E9A87E;}
 
   footer{padding:36px 0; border-top:1px solid var(--line);}
   .foot-inner{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13.5px; opacity:0.65;}
@@ -246,12 +250,14 @@
         <a class="email" href="mailto:info@analyze-design.hr">info@analyze-design.hr</a>
         <div class="loc">Split, Croatia<br>Antibes, France</div>
       </div>
-      <form id="form-company">
-        <div class="field"><label class="mono" for="c-name">FULL NAME</label><input type="text" id="c-name" required></div>
-        <div class="field"><label class="mono" for="c-company">COMPANY</label><input type="text" id="c-company"></div>
-        <div class="field"><label class="mono" for="c-email">EMAIL</label><input type="email" id="c-email" required></div>
-        <div class="field"><label class="mono" for="c-message">WHAT DO YOU NEED HELP WITH?</label><textarea id="c-message" required></textarea></div>
+      <form id="form-company" data-type="company" data-lang="en">
+        <div class="field"><label class="mono" for="c-name">FULL NAME</label><input type="text" id="c-name" name="name" required></div>
+        <div class="field"><label class="mono" for="c-company">COMPANY</label><input type="text" id="c-company" name="company"></div>
+        <div class="field"><label class="mono" for="c-email">EMAIL</label><input type="email" id="c-email" name="email" required></div>
+        <div class="field"><label class="mono" for="c-message">WHAT DO YOU NEED HELP WITH?</label><textarea id="c-message" name="message" required></textarea></div>
+        <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button type="submit" class="btn-primary">Send inquiry</button>
+        <p class="form-status" aria-live="polite"></p>
       </form>
     </div>
   </div>
@@ -266,18 +272,8 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-  document.getElementById('form-company').addEventListener('submit', function(e){
-    e.preventDefault();
-    var name = document.getElementById('c-name').value;
-    var company = document.getElementById('c-company').value;
-    var email = document.getElementById('c-email').value;
-    var msg = document.getElementById('c-message').value;
-    var subject = encodeURIComponent('Website inquiry — ' + name);
-    var lines = ['Name: ' + name, 'Company: ' + company, 'Email: ' + email, '', msg];
-    var body = encodeURIComponent(lines.join('\n'));
-    window.location.href = 'mailto:info@analyze-design.hr?subject=' + subject + '&body=' + body;
-  });
 </script>
+<script src="/contact-form.js"></script>
 
 </body>
 </html>

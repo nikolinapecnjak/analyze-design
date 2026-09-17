@@ -174,6 +174,10 @@
   .field input:focus, .field textarea:focus{border-bottom-color:var(--cream);}
   .field textarea{resize:vertical; min-height:90px;}
   form .btn-primary{align-self:flex-start; border:none; margin-top:8px;}
+  .hp-field{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+  .form-status{margin-top:12px; font-family:'IBM Plex Mono', monospace; font-size:13px; min-height:18px;}
+  .form-status.ok{color:#8FD9A8;}
+  .form-status.err{color:#E9A87E;}
   form.form-mentorship .btn-primary{background:var(--teal); border-color:var(--teal);}
   form.form-mentorship .btn-primary:hover{background:var(--teal-dark); border-color:var(--teal-dark);}
 
@@ -330,23 +334,27 @@
         <div class="loc">Split, Hrvatska<br>Antibes, Francuska</div>
       </div>
 
-      <form id="form-apply">
-        <div class="field"><label class="mono" for="k-name">IME I PREZIME</label><input type="text" id="k-name" required></div>
-        <div class="field"><label class="mono" for="k-email">EMAIL</label><input type="email" id="k-email" required></div>
-        <div class="field"><label class="mono" for="k-role">GLAVNA ULOGA / VJEŠTINA</label><input type="text" id="k-role" placeholder="npr. Technical Business Analyst" required></div>
-        <div class="field"><label class="mono" for="k-experience">GODINE ISKUSTVA</label><input type="text" id="k-experience"></div>
-        <div class="field"><label class="mono" for="k-link">LINKEDIN ILI PORTFOLIO</label><input type="text" id="k-link"></div>
-        <div class="field"><label class="mono" for="k-availability">DOSTUPNOST</label><input type="text" id="k-availability"></div>
+      <form id="form-apply" data-type="apply" data-lang="hr">
+        <div class="field"><label class="mono" for="k-name">IME I PREZIME</label><input type="text" id="k-name" name="name" required></div>
+        <div class="field"><label class="mono" for="k-email">EMAIL</label><input type="email" id="k-email" name="email" required></div>
+        <div class="field"><label class="mono" for="k-role">GLAVNA ULOGA / VJEŠTINA</label><input type="text" id="k-role" name="role" placeholder="npr. Technical Business Analyst" required></div>
+        <div class="field"><label class="mono" for="k-experience">GODINE ISKUSTVA</label><input type="text" id="k-experience" name="experience"></div>
+        <div class="field"><label class="mono" for="k-link">LINKEDIN ILI PORTFOLIO</label><input type="text" id="k-link" name="link"></div>
+        <div class="field"><label class="mono" for="k-availability">DOSTUPNOST</label><input type="text" id="k-availability" name="availability"></div>
+        <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button type="submit" class="btn-primary">Pošaljite prijavu</button>
+        <p class="form-status" aria-live="polite"></p>
       </form>
 
-      <form id="form-mentorship" class="form-mentorship hidden">
-        <div class="field"><label class="mono" for="m-name">IME I PREZIME</label><input type="text" id="m-name" required></div>
-        <div class="field"><label class="mono" for="m-email">EMAIL</label><input type="email" id="m-email" required></div>
-        <div class="field"><label class="mono" for="m-role">CILJANA ULOGA</label><input type="text" id="m-role" placeholder="npr. Business Analyst" required></div>
-        <div class="field"><label class="mono" for="m-level">TRENUTNA RAZINA</label><input type="text" id="m-level" placeholder="npr. Junior"></div>
-        <div class="field"><label class="mono" for="m-message">ŠTO ŽELITE POSTIĆI?</label><textarea id="m-message"></textarea></div>
+      <form id="form-mentorship" class="form-mentorship hidden" data-type="mentorship" data-lang="hr">
+        <div class="field"><label class="mono" for="m-name">IME I PREZIME</label><input type="text" id="m-name" name="name" required></div>
+        <div class="field"><label class="mono" for="m-email">EMAIL</label><input type="email" id="m-email" name="email" required></div>
+        <div class="field"><label class="mono" for="m-role">CILJANA ULOGA</label><input type="text" id="m-role" name="role" placeholder="npr. Business Analyst" required></div>
+        <div class="field"><label class="mono" for="m-level">TRENUTNA RAZINA</label><input type="text" id="m-level" name="level" placeholder="npr. Junior"></div>
+        <div class="field"><label class="mono" for="m-message">ŠTO ŽELITE POSTIĆI?</label><textarea id="m-message" name="message"></textarea></div>
+        <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button type="submit" class="btn-teal-solid">Pošaljite upit</button>
+        <p class="form-status" aria-live="polite"></p>
       </form>
     </div>
   </div>
@@ -377,34 +385,8 @@
     document.getElementById('contact').scrollIntoView({behavior:'smooth'});
   }
   selectTab('apply');
-
-  document.getElementById('form-apply').addEventListener('submit', function(e){
-    e.preventDefault();
-    var name = document.getElementById('k-name').value;
-    var email = document.getElementById('k-email').value;
-    var role = document.getElementById('k-role').value;
-    var exp = document.getElementById('k-experience').value;
-    var link = document.getElementById('k-link').value;
-    var avail = document.getElementById('k-availability').value;
-    var subject = encodeURIComponent('Prijava kontraktora — ' + name + ' — ' + role);
-    var lines = ['Ime: ' + name, 'Email: ' + email, 'Uloga / vještina: ' + role, 'Godine iskustva: ' + exp, 'LinkedIn / portfolio: ' + link, 'Dostupnost: ' + avail];
-    var body = encodeURIComponent(lines.join('\n'));
-    window.location.href = 'mailto:info@analyze-design.hr?subject=' + subject + '&body=' + body;
-  });
-
-  document.getElementById('form-mentorship').addEventListener('submit', function(e){
-    e.preventDefault();
-    var name = document.getElementById('m-name').value;
-    var email = document.getElementById('m-email').value;
-    var role = document.getElementById('m-role').value;
-    var level = document.getElementById('m-level').value;
-    var msg = document.getElementById('m-message').value;
-    var subject = encodeURIComponent('Zahtjev za mentorstvo — ' + name + ' — ' + role);
-    var lines = ['Ime: ' + name, 'Email: ' + email, 'Ciljana uloga: ' + role, 'Trenutna razina: ' + level, '', msg];
-    var body = encodeURIComponent(lines.join('\n'));
-    window.location.href = 'mailto:info@analyze-design.hr?subject=' + subject + '&body=' + body;
-  });
 </script>
+<script src="/contact-form.js"></script>
 
 </body>
 </html>
