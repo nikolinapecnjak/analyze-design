@@ -28,6 +28,38 @@ function mime_encode_subject(string $subject): string
     return '=?UTF-8?B?' . base64_encode($subject) . '?=';
 }
 
+function extract_cv_attachment(): ?array
+{
+    if (empty($_FILES['cv']['name']) || ($_FILES['cv']['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
+        return null;
+    }
+
+    $file = $_FILES['cv'];
+
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        throw new InvalidArgumentException('CV upload failed');
+    }
+
+    $maxSize = 5 * 1024 * 1024; // 5MB
+    if ($file['size'] > $maxSize) {
+        throw new InvalidArgumentException('CV file is too large (max 5MB)');
+    }
+
+    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    $mime = (new finfo(FILEINFO_MIME_TYPE))->file($file['tmp_name']);
+
+    if ($ext !== 'pdf' || $mime !== 'application/pdf') {
+        throw new InvalidArgumentException('CV must be a PDF file');
+    }
+
+    $safeName = preg_replace('/[^A-Za-z0-9._-]/', '_', $file['name']);
+
+    return [
+        'name' => $safeName !== '' ? $safeName : 'cv.pdf',
+        'content' => file_get_contents($file['tmp_name']),
+    ];
+}
+
 $to = 'info@analyze-design.hr';
 
 try {
@@ -78,11 +110,32 @@ try {
     }
 
     $body = implode("\n", $lines);
-    $headers = "From: Analyze Design Website <website@analyze-design.hr>\r\n"
-        . "Reply-To: {$name} <{$email}>\r\n"
-        . "Content-Type: text/plain; charset=UTF-8";
+    $attachment = extract_cv_attachment();
 
-    $sent = mail($to, mime_encode_subject($subject), $body, $headers);
+    $baseHeaders = "From: Analyze Design Website <info@analyze-design.hr>\r\n"
+        . "Reply-To: {$name} <{$email}>\r\n"
+        . "MIME-Version: 1.0\r\n";
+
+    if ($attachment === null) {
+        $headers = $baseHeaders . 'Content-Type: text/plain; charset=UTF-8';
+        $sent = mail($to, mime_encode_subject($subject), $body, $headers);
+    } else {
+        $boundary = 'bnd_' . bin2hex(random_bytes(16));
+        $headers = $baseHeaders . "Content-Type: multipart/mixed; boundary=\"{$boundary}\"";
+
+        $message = "--{$boundary}\r\n"
+            . "Content-Type: text/plain; charset=UTF-8\r\n"
+            . "Content-Transfer-Encoding: 8bit\r\n\r\n"
+            . $body . "\r\n"
+            . "--{$boundary}\r\n"
+            . "Content-Type: application/pdf; name=\"{$attachment['name']}\"\r\n"
+            . "Content-Transfer-Encoding: base64\r\n"
+            . "Content-Disposition: attachment; filename=\"{$attachment['name']}\"\r\n\r\n"
+            . chunk_split(base64_encode($attachment['content'])) . "\r\n"
+            . "--{$boundary}--";
+
+        $sent = mail($to, mime_encode_subject($subject), $message, $headers);
+    }
 
     if (!$sent) {
         throw new RuntimeException('Mail could not be sent');
