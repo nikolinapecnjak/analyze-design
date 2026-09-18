@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FBF6F0">
 <title>Analyze Design — Analiziramo probleme i dizajniramo tehnička rješenja</title>
 <meta name="description" content="Analyze Design d.o.o. — BA/PO consulting & dizajn rješenja, razvoj softvera, project management, AI agenti i B2B IT staffing za tvrtke diljem EU-a i SAD-a.">
 <link rel="canonical" href="https://analyze-design.hr/hr/">
@@ -29,120 +30,19 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#1C2321; --paper:#F3F0E9; --paper-2:#E9E4D8;
-    --blueprint:#15303D; --blueprint-2:#1E4152;
-    --line:#CFC9BA; --line-on-blue:rgba(246,241,231,0.28);
-    --rust:#B85C3A; --rust-dark:#95452A;
-    --teal:#3E7268; --teal-dark:#2C5148;
-    --cream:#F6F1E7; --max:1120px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{margin:0; background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans', sans-serif; font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;}
-  a{color:inherit;}
-  h1,h2,h3,h4{font-family:'Fraunces', Georgia, serif; font-weight:600; letter-spacing:-0.01em;}
-  .mono{font-family:'IBM Plex Mono', monospace;}
-  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
-
-  header{position:sticky; top:0; z-index:50; background:var(--paper); border-bottom:1px solid var(--line);}
-  .nav{display:flex; align-items:center; justify-content:space-between; padding:18px 28px; max-width:var(--max); margin:0 auto; gap:20px; flex-wrap:wrap; position:relative;}
-  .brand{display:inline-flex; align-items:center; text-decoration:none;}
-  .brand-logo{height:30px; width:auto; display:block;}
-  nav.links{display:flex; gap:26px; align-items:center;}
-  nav.links a{text-decoration:none; font-size:15px; color:var(--ink); opacity:0.82; white-space:nowrap;}
-  nav.links a:hover{opacity:1;}
-  nav.links a.cross-link{opacity:1; font-weight:600; border-bottom:2px solid var(--teal);}
-  .nav-right{display:flex; align-items:center; gap:16px;}
-  .nav-cta{border-radius:4px; border:1px solid var(--ink); padding:9px 18px; text-decoration:none; font-size:14px; font-weight:500; white-space:nowrap; background:none; cursor:pointer; font-family:'IBM Plex Sans', sans-serif; color:var(--ink);}
-  .nav-cta:hover{background:var(--ink); color:var(--paper);}
-  .lang-switch{display:flex; border:1px solid var(--ink); font-family:'IBM Plex Mono', monospace; font-size:13px;}
-  .lang-switch a{padding:8px 12px; text-decoration:none; color:var(--ink); opacity:0.55;}
-  .lang-switch a.active{opacity:1; background:var(--ink); color:var(--paper);}
-  .menu-toggle{display:none; background:none; border:1px solid var(--ink); border-radius:4px; padding:9px 10px; cursor:pointer; flex-direction:column; gap:4px;}
-  .menu-toggle span{display:block; width:18px; height:2px; background:var(--ink);}
-
-  .hero{background:var(--blueprint); color:var(--cream); position:relative; overflow:hidden;
-    background-image:
-      radial-gradient(680px circle at 88% -8%, rgba(184,92,58,0.32), transparent 60%),
-      radial-gradient(560px circle at -6% 96%, rgba(62,114,104,0.30), transparent 60%);
-  }
-  .hero-inner{max-width:var(--max); margin:0 auto; padding:88px 28px 0; position:relative;}
-  .hero-tag{display:inline-block; font-size:13.5px; font-weight:500; color:var(--cream); background:rgba(246,241,231,0.12); padding:8px 16px; border-radius:999px; margin:0 0 28px;}
-  .hero h1{font-size:clamp(40px, 6.6vw, 72px); line-height:1.02; margin:0 0 22px; font-weight:700; letter-spacing:-0.01em; max-width:760px;}
-  .hero p.lead{font-size:clamp(17px, 2vw, 20px); max-width:600px; opacity:0.92; margin:0 0 40px;}
-  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:64px;}
-  .btn-primary{border-radius:4px; background:var(--rust); color:var(--cream); border:1px solid var(--rust); padding:14px 24px; text-decoration:none; font-weight:600; font-size:15px; display:inline-block; cursor:pointer; font-family:'IBM Plex Sans', sans-serif;}
-  .btn-primary:hover{background:var(--rust-dark); border-color:var(--rust-dark);}
-  .btn-teal{border-radius:4px; background:transparent; color:var(--cream); border:1px solid var(--teal); padding:14px 24px; text-decoration:none; font-weight:600; font-size:15px; display:inline-block; cursor:pointer; font-family:'IBM Plex Sans', sans-serif;}
-  .btn-teal:hover{background:var(--teal); border-color:var(--teal);}
-
-  section{padding:96px 0;}
-  .section-head{max-width:640px; margin-bottom:56px;}
-  .section-head .kicker{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--rust); margin:0 0 12px;}
-  .section-head h2{font-size:clamp(28px,4vw,38px); margin:0 0 14px; line-height:1.14;}
-  .section-head p{font-size:17px; opacity:0.78; margin:0;}
-
-  .service-row{display:grid; grid-template-columns:280px 1fr; gap:40px; padding:36px 0; border-top:1px solid var(--line);}
-  .service-row:last-child{border-bottom:1px solid var(--line);}
-  .service-row h3{margin:0; font-size:23px;}
-  .service-row .desc{font-size:16px; opacity:0.85; max-width:640px; margin:0 0 16px;}
-  .tags{display:flex; flex-wrap:wrap; gap:10px 0;}
-  .tags span{font-family:'IBM Plex Mono', monospace; font-size:12.5px; padding-right:14px; margin-right:14px; border-right:1px solid var(--line); opacity:0.75;}
-  .tags span:last-child{border-right:none; margin-right:0; padding-right:0;}
-
-  .process{background:var(--paper-2);}
-  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
-  .step{background:var(--paper-2); padding:32px 28px;}
-  .step .num{font-family:'IBM Plex Mono', monospace; font-size:14px; color:var(--rust); margin-bottom:14px;}
-  .step h4{margin:0 0 10px; font-size:19px;}
-  .step p{margin:0; font-size:15px; opacity:0.8;}
-
-  .about{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;}
-  .about-copy p{font-size:17px; opacity:0.85; margin:0 0 18px;}
-  .about-facts{border-top:1px solid var(--line);}
-  .about-facts div{display:flex; justify-content:space-between; gap:20px; padding:16px 0; border-bottom:1px solid var(--line); font-size:15px;}
-
-  .contact{background:var(--blueprint); color:var(--cream);}
-  .contact .section-head p{opacity:0.85;}
-  .contact .section-head .kicker{color:#E9A87E;}
-  .contact-grid{display:grid; grid-template-columns:1fr 1.2fr; gap:60px;}
-  .contact-info a.email{display:inline-block; font-size:22px; font-weight:600; text-decoration:none; border-bottom:2px solid var(--rust); margin-bottom:28px;}
-  .contact-info .loc{opacity:0.8; font-size:15px; line-height:1.9;}
-  form{display:flex; flex-direction:column; gap:18px;}
-  .field label{display:block; font-family:'IBM Plex Mono', monospace; font-size:12px; opacity:0.7; margin-bottom:8px;}
-  .field input, .field textarea{width:100%; background:transparent; border:none; border-bottom:1px solid var(--line-on-blue); color:var(--cream); font-family:'IBM Plex Sans', sans-serif; font-size:16px; padding:10px 0; outline:none;}
-  .field input:focus, .field textarea:focus{border-bottom-color:var(--cream);}
-  .field textarea{resize:vertical; min-height:90px;}
-  form .btn-primary{align-self:flex-start; border:none; margin-top:8px;}
-  .hp-field{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
-  .form-status{margin-top:12px; font-family:'IBM Plex Mono', monospace; font-size:13px; min-height:18px;}
-  .form-status.ok{color:#8FD9A8;}
-  .form-status.err{color:#E9A87E;}
-
-  footer{padding:36px 0; border-top:1px solid var(--line);}
-  .foot-inner{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13.5px; opacity:0.65;}
-  .foot-link{color:inherit; text-decoration:none;}
-  .foot-link:hover{text-decoration:underline;}
-
-  :is(a,button):focus-visible{outline:2px solid var(--rust); outline-offset:3px;}
-
-  @media (max-width:820px){
-    .menu-toggle{display:flex;}
-    nav.links{display:none; position:absolute; top:100%; left:0; right:0; background:var(--paper); border-bottom:1px solid var(--line); flex-direction:column; align-items:flex-start; padding:20px 28px; gap:18px; z-index:60;}
-    nav.links.open{display:flex;}
-    .service-row{grid-template-columns:1fr; gap:14px;}
-    .steps{grid-template-columns:1fr;}
-    .about{grid-template-columns:1fr; gap:36px;}
-    .contact-grid{grid-template-columns:1fr; gap:44px;}
-    .nav{padding:16px 20px;}
-  }
-  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="stack" viewBox="0 0 200 200">
+    <rect x="35" y="35" width="130" height="130" rx="34" transform="rotate(45 100 100)" style="fill:var(--c1)"/>
+    <rect x="58" y="58" width="84" height="84" rx="24" transform="rotate(45 100 100)" style="fill:var(--c2)"/>
+    <rect x="80" y="80" width="40" height="40" rx="13" transform="rotate(45 100 100)" style="fill:var(--c3)"/>
+  </symbol>
+</svg>
 
 <header>
   <div class="nav">
@@ -159,7 +59,7 @@
         <a href="../index.html">EN</a>
         <a class="active" href="index.html">HR</a>
       </div>
-      <button class="nav-cta" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Zatražite ponudu</button>
+      <a class="btn btn-dark btn-sm nav-cta" href="#contact">Zatražite ponudu</a>
     </div>
     <button class="menu-toggle" type="button" aria-label="Izbornik" onclick="document.querySelector('nav.links').classList.toggle('open')">
       <span></span><span></span><span></span>
@@ -167,118 +67,192 @@
   </div>
 </header>
 
+<main>
+
 <section class="hero">
   <div class="hero-inner">
-    <p class="hero-tag">B2B IT usluge i staffing</p>
-    <h1>Analiziramo probleme<br>i dizajniramo tehnička rješenja.</h1>
-    <p class="lead">Analyze Design samostalno isporučuje tehničke projekte i integrira provjerene IT kontraktore u klijentove timove — organiziramo projekt, onboarding i edukaciju usput.</p>
-    <div class="hero-ctas">
-      <button class="btn-primary" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Zatražite ponudu</button>
-      <a class="btn-teal" href="contractors.html">Pronađite sljedeći projekt</a>
+    <div>
+      <p class="eyebrow">B2B IT usluge i staffing</p>
+      <h1>Analiziramo <em>probleme</em> i dizajniramo tehnička <em>rješenja.</em></h1>
+      <p class="lead">Analyze Design samostalno isporučuje tehničke projekte i integrira provjerene IT kontraktore u klijentove timove — organiziramo projekt, onboarding i edukaciju usput.</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent" href="#contact">Zatražite ponudu <span aria-hidden="true">→</span></a>
+        <div class="assure">
+          <img src="/favicon-192x192.png" alt="" width="48" height="48">
+          <div><strong>Besplatan uvodni razgovor, bez obveze</strong><span>Javljamo se u roku 1–2 radna dana</span></div>
+        </div>
+      </div>
+      <p class="hero-sub"><a class="link-arrow" href="contractors.html">Tražite sljedeći IT projekt? <span aria-hidden="true">→</span></a></p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg class="stack" viewBox="0 0 200 200"><use href="#stack" style="--c1:#FFDCC4; --c2:#FFB68B; --c3:#D9663B"/></svg>
+      <div class="chip c1"><i></i>Zahtjevi → specifikacija</div>
+      <div class="chip c2"><i></i>Provjereni kontraktori</div>
     </div>
   </div>
 </section>
 
-<section id="services">
+<div class="strip">
+  <div class="strip-inner">
+    <span>Fintech</span><span>Traveltech</span><span>B2B ugovori</span><span>EU i SAD tržište</span><span>EN · HR · FR</span>
+  </div>
+</div>
+
+<section class="intro">
+  <div class="wrap intro-grid">
+    <div class="reveal">
+      <p class="eyebrow">Zašto Analyze Design</p>
+      <h2>Tehnička jasnoća, <em>isporučena</em> od početka do kraja.</h2>
+    </div>
+    <div class="reveal">
+      <p class="pre">S nama možete:</p>
+      <ul class="checks">
+        <li>Znati točno što treba izgraditi prije nego se napiše ijedna linija koda.</li>
+        <li>Uključiti provjerene IT kontraktore u svoj tim, uz onboarding i edukaciju koje preuzimamo mi.</li>
+        <li>Brže isporučivati uz API integracije i AI automatizacije koje gradimo iznimno brzo.</li>
+      </ul>
+      <a class="btn btn-dark" href="#services">Pogledajte usluge</a>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
   <div class="wrap">
-    <div class="section-head">
-      <p class="kicker">Usluge</p>
+    <div class="section-head reveal">
+      <p class="eyebrow">Usluge</p>
       <h2>Pet načina suradnje</h2>
       <p>Od samostalne isporuke cijelog projekta do integracije provjerenog kontraktora u vaš postojeći tim — u oba slučaja vodimo organizaciju, onboarding i edukaciju.</p>
     </div>
-
-    <div class="service-row">
-      <h3>BA/PO Consulting &amp; Solution Design</h3>
-      <div><p class="desc">Analiza poslovnih procesa, definiranje zahtjeva i dizajn rješenja — od ideje do specifikacije spremne za razvoj, uz vođenje proizvoda od početka do kraja.</p>
-      <div class="tags"><span>Analiza zahtjeva</span><span>Dizajn rješenja</span><span>Product ownership</span><span>Backlog upravljanje</span></div></div>
-    </div>
-    <div class="service-row">
-      <h3>Razvoj softvera</h3>
-      <div><p class="desc">Razvoj i integracija softverskih rješenja, uključujući API integracije, s iskustvom u fintech i traveltech industrijama.</p>
-      <div class="tags"><span>API integracije</span><span>Backend & Frontend</span><span>Fintech</span><span>Traveltech</span></div></div>
-    </div>
-    <div class="service-row">
-      <h3>Project Management</h3>
-      <div><p class="desc">Planiranje, koordinacija i vođenje projekata kroz cijeli životni ciklus — rokovi, opseg i komunikacija s dionicima pod kontrolom.</p>
-      <div class="tags"><span>Agile & Scrum</span><span>Planiranje</span><span>Koordinacija timova</span><span>Izvještavanje</span></div></div>
-    </div>
-    <div class="service-row">
-      <h3>IT Staffing &amp; Integracija</h3>
-      <div><p class="desc">Cjelovita usluga, ne samo spajanje CV-a s pozicijom — organiziramo projekt, provodimo onboarding i edukaciju kontraktora te vodimo njegovu integraciju u vaš tim.</p>
-      <div class="tags"><span>Organizacija projekta</span><span>Onboarding & edukacija</span><span>Integracija kontraktora</span><span>EU & SAD tržište</span></div></div>
-    </div>
-    <div class="service-row">
-      <h3>AI agenti za mala i srednja poduzeća</h3>
-      <div><p class="desc">Gradimo prilagođeni softver i AI-pogonjene automatizacije iznimno brzo, koristeći AI kroz cijeli proces — od zahtjeva do isporuke.</p>
-      <div class="tags"><span>AI agenti</span><span>Automatizacija procesa</span><span>Brzi razvoj</span><span>Mala i srednja poduzeća</span></div></div>
+    <div class="stack-list">
+      <article class="svc t-peach" style="--i:0">
+        <svg class="stack" viewBox="0 0 200 200" aria-hidden="true"><use href="#stack" style="--c1:#FFD9BD; --c2:#FFB98A; --c3:#F0783F"/></svg>
+        <div>
+          <span class="pill">Savjetovanje</span>
+          <h3>BA/PO Consulting &amp; Solution Design</h3>
+          <p class="desc">Analiza poslovnih procesa, definiranje zahtjeva i dizajn rješenja — od ideje do specifikacije spremne za razvoj, uz vođenje proizvoda od početka do kraja.</p>
+          <ul class="tags"><li>Analiza zahtjeva</li><li>Dizajn rješenja</li><li>Product ownership</li><li>Backlog upravljanje</li></ul>
+          <a class="link-arrow" href="#contact">Javite nam se <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="svc t-mint" style="--i:1">
+        <svg class="stack" viewBox="0 0 200 200" aria-hidden="true"><use href="#stack" style="--c1:#BDEBCD; --c2:#8FD8A9; --c3:#4DB574"/></svg>
+        <div>
+          <span class="pill">Razvoj</span>
+          <h3>Razvoj softvera</h3>
+          <p class="desc">Razvoj i integracija softverskih rješenja, uključujući API integracije, s iskustvom u fintech i traveltech industrijama.</p>
+          <ul class="tags"><li>API integracije</li><li>Backend &amp; Frontend</li><li>Fintech</li><li>Traveltech</li></ul>
+          <a class="link-arrow" href="#contact">Javite nam se <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="svc t-sky" style="--i:2">
+        <svg class="stack" viewBox="0 0 200 200" aria-hidden="true"><use href="#stack" style="--c1:#C4DBFF; --c2:#94BDFF; --c3:#5A93F2"/></svg>
+        <div>
+          <span class="pill">Isporuka</span>
+          <h3>Project Management</h3>
+          <p class="desc">Planiranje, koordinacija i vođenje projekata kroz cijeli životni ciklus — rokovi, opseg i komunikacija s dionicima pod kontrolom.</p>
+          <ul class="tags"><li>Agile &amp; Scrum</li><li>Planiranje</li><li>Koordinacija timova</li><li>Izvještavanje</li></ul>
+          <a class="link-arrow" href="#contact">Javite nam se <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="svc t-butter" style="--i:3">
+        <svg class="stack" viewBox="0 0 200 200" aria-hidden="true"><use href="#stack" style="--c1:#FFE9A0; --c2:#FFD666; --c3:#F5B321"/></svg>
+        <div>
+          <span class="pill">Staffing</span>
+          <h3>IT Staffing &amp; Integracija</h3>
+          <p class="desc">Cjelovita usluga, ne samo spajanje CV-a s pozicijom — organiziramo projekt, provodimo onboarding i edukaciju kontraktora te vodimo njegovu integraciju u vaš tim.</p>
+          <ul class="tags"><li>Organizacija projekta</li><li>Onboarding &amp; edukacija</li><li>Integracija kontraktora</li><li>EU &amp; SAD tržište</li></ul>
+          <a class="link-arrow" href="#contact">Javite nam se <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="svc t-lilac" style="--i:4">
+        <svg class="stack" viewBox="0 0 200 200" aria-hidden="true"><use href="#stack" style="--c1:#DACDFF; --c2:#B9A5FF; --c3:#8A69F0"/></svg>
+        <div>
+          <span class="pill">AI</span>
+          <h3>AI agenti za mala i srednja poduzeća</h3>
+          <p class="desc">Gradimo prilagođeni softver i AI-pogonjene automatizacije iznimno brzo, koristeći AI kroz cijeli proces — od zahtjeva do isporuke.</p>
+          <ul class="tags"><li>AI agenti</li><li>Automatizacija procesa</li><li>Brzi razvoj</li><li>Mala i srednja poduzeća</li></ul>
+          <a class="link-arrow" href="#contact">Javite nam se <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
 <section class="process" id="how-we-work">
   <div class="wrap">
-    <div class="section-head">
-      <p class="kicker">Kako radimo</p>
+    <div class="section-head reveal">
+      <p class="eyebrow">Kako radimo</p>
       <h2>Tri koraka do suradnje</h2>
     </div>
     <div class="steps">
-      <div class="step"><div class="num mono">01</div><h4>Upoznavanje</h4><p>Kratak razgovor o cilju, opsegu posla i rokovima — bez obveze.</p></div>
-      <div class="step"><div class="num mono">02</div><h4>Ponuda</h4><p>Konkretan prijedlog suradnje: usluge, dinamika rada i cijena.</p></div>
-      <div class="step"><div class="num mono">03</div><h4>Suradnja</h4><p>Rad na projektu ili uvođenje profila u tim, uz redovitu komunikaciju.</p></div>
+      <div class="step reveal"><div class="num">01</div><h4>Upoznavanje</h4><p>Kratak razgovor o cilju, opsegu posla i rokovima — bez obveze.</p></div>
+      <div class="step reveal"><div class="num">02</div><h4>Ponuda</h4><p>Konkretan prijedlog suradnje: usluge, dinamika rada i cijena.</p></div>
+      <div class="step reveal"><div class="num">03</div><h4>Suradnja</h4><p>Rad na projektu ili uvođenje profila u tim, uz redovitu komunikaciju.</p></div>
     </div>
   </div>
 </section>
 
-<section id="about">
-  <div class="wrap about">
-    <div class="about-copy">
-      <p class="kicker" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--rust);margin:0 0 12px;">O nama</p>
-      <p>Analyze Design već više od dvije godine djeluje na hrvatskom, njemačkom i francuskom tržištu, pružajući usluge poslovne analize, razvoja softvera i IT staffinga s fokusom na fintech i traveltech.</p>
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy reveal">
+      <p class="eyebrow">O nama</p>
+      <p>Analyze Design već <em>više od dvije godine</em> djeluje na hrvatskom, njemačkom i francuskom tržištu, pružajući usluge poslovne analize, razvoja softvera i IT staffinga s fokusom na fintech i traveltech.</p>
     </div>
-    <div class="about-facts">
-      <div><span>Domene</span><span>Fintech · Traveltech</span></div>
-      <div><span>Oblik suradnje</span><span>B2B ugovor</span></div>
-      <div><span>Jezici</span><span>EN · HR · FR</span></div>
-      <div><span>Iskustvo na tržištu</span><span>Hrvatska · Francuska · Njemačka</span></div>
+    <div class="facts reveal">
+      <div class="fact"><span>Domene</span><strong>Fintech · Traveltech</strong></div>
+      <div class="fact"><span>Oblik suradnje</span><strong>B2B ugovor</strong></div>
+      <div class="fact"><span>Jezici</span><strong>EN · HR · FR</strong></div>
+      <div class="fact"><span>Iskustvo na tržištu</span><strong>Hrvatska · Francuska · Njemačka</strong></div>
     </div>
   </div>
 </section>
 
 <section class="contact" id="contact">
   <div class="wrap">
-    <div class="section-head">
-      <p class="kicker">Kontakt</p>
-      <h2>Recite nam što vam treba</h2>
-      <p>Javite se izravno na e-mail ili ispunite kratki upit — javljamo se u roku 1–2 radna dana.</p>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-info">
+    <div class="contact-card">
+      <div>
+        <p class="eyebrow">Kontakt</p>
+        <h2>Recite nam što vam treba</h2>
+        <p class="sub">Javite se izravno na e-mail ili ispunite kratki upit — javljamo se u roku 1–2 radna dana.</p>
         <a class="email" href="mailto:info@analyze-design.hr">info@analyze-design.hr</a>
         <div class="loc">Split, Hrvatska<br>Antibes, Francuska</div>
       </div>
       <form id="form-company" data-type="company" data-lang="hr">
-        <div class="field"><label class="mono" for="c-name">IME I PREZIME</label><input type="text" id="c-name" name="name" required></div>
-        <div class="field"><label class="mono" for="c-company">TVRTKA</label><input type="text" id="c-company" name="company"></div>
-        <div class="field"><label class="mono" for="c-email">EMAIL</label><input type="email" id="c-email" name="email" required></div>
-        <div class="field"><label class="mono" for="c-message">ZA ŠTO VAM TREBA POMOĆ?</label><textarea id="c-message" name="message" required></textarea></div>
+        <div class="field"><label for="c-name">Ime i prezime</label><input type="text" id="c-name" name="name" required></div>
+        <div class="field"><label for="c-company">Tvrtka</label><input type="text" id="c-company" name="company"></div>
+        <div class="field"><label for="c-email">Email</label><input type="email" id="c-email" name="email" required></div>
+        <div class="field"><label for="c-message">Za što vam treba pomoć?</label><textarea id="c-message" name="message" required></textarea></div>
         <input class="hp-field" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button type="submit" class="btn-primary">Pošaljite upit</button>
+        <button type="submit" class="btn btn-accent">Pošaljite upit</button>
         <p class="form-status" aria-live="polite"></p>
       </form>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer>
-  <div class="wrap foot-inner">
-    <span>© <span id="year"></span> Sva prava pridržana.</span>
-    <span>Pravila privatnosti · Uvjeti korištenja</span>
-    <a class="foot-link" href="https://www.linkedin.com/company/analyze-design-hr/" target="_blank" rel="noopener">LinkedIn</a>
+  <div class="wrap foot">
+    <a class="brand" href="index.html"><img class="brand-logo" src="/wordmark.png" alt="Analyze Design"></a>
+    <div class="foot-meta">
+      <span>&copy; <span id="year"></span> Sva prava pridržana.</span>
+      <span>Pravila privatnosti · Uvjeti korištenja</span>
+      <a class="foot-link" href="https://www.linkedin.com/company/analyze-design-hr/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
   </div>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) { els.forEach(function(el){ el.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function(el){ io.observe(el); });
+  })();
 </script>
 <script src="/contact-form.js"></script>
 
